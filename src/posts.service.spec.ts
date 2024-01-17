@@ -19,7 +19,31 @@ describe("PostsService", () => {
       posts.forEach(post => postsService.create(post));
     });
 
-    it("should return correct posts for skip options", () => {
+    it("should return all posts if called without options", () => {
+      const postsTest = postsService.findMany();
+      expect(postsTest).toEqual(
+        expect.arrayContaining([
+          {
+            id: "1",
+            text: "Post 1"
+          },
+          {
+            id: "2",
+            text: "Post 2"
+          },
+          {
+            id: "3",
+            text: "Post 3"
+          },
+          {
+            id: "4",
+            text: "Post 4"
+          }
+        ])
+      );
+    });
+
+    it("should return correct posts for skip and limit options", () => {
       const skipTest = 2;
       const limitTest = 2;
       const testSkipPosts = postsService.findMany({ skip: skipTest });
@@ -70,30 +94,6 @@ describe("PostsService", () => {
           id: idPost,
           text: postText.text
         })
-      );
-    });
-
-    it("should return all posts if called without options", () => {
-      const postsTest = postsService.findMany();
-      expect(postsTest).toEqual(
-        expect.arrayContaining([
-          {
-            id: "1",
-            text: "Post 1"
-          },
-          {
-            id: "2",
-            text: "Post 2"
-          },
-          {
-            id: "3",
-            text: "Post 3"
-          },
-          {
-            id: "4",
-            text: "Post 4"
-          }
-        ])
       );
     });
 
