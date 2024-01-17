@@ -68,8 +68,8 @@ describe("PostsService", () => {
       const skipTest = 2;
       const limitTest = 1;
       const testPosts = postsService.findMany({
-        skip: skipTest,
-        limit: limitTest
+        limit: limitTest,
+        skip: skipTest
       });
       expect(testPosts).toEqual(
         expect.arrayContaining([
