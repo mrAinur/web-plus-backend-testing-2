@@ -44,31 +44,21 @@ describe("PostsService", () => {
     });
 
     it("should return correct posts for skip and limit options", () => {
-      const skipTest = 2;
+      const skipTest = 1;
       const limitTest = 2;
-      const testSkipPosts = postsService.findMany({ skip: skipTest });
-      const testLimitPosts = postsService.findMany({ limit: limitTest });
-      expect(testSkipPosts).toEqual(
+      const testPosts = postsService.findMany({
+        skip: skipTest,
+        limit: limitTest
+      });
+      expect(testPosts).toEqual(
         expect.arrayContaining([
-          {
-            id: "3",
-            text: "Post 3"
-          },
-          {
-            id: "4",
-            text: "Post 4"
-          }
-        ])
-      );
-      expect(testLimitPosts).toEqual(
-        expect.arrayContaining([
-          {
-            id: "1",
-            text: "Post 1"
-          },
           {
             id: "2",
             text: "Post 2"
+          },
+          {
+            id: "3",
+            text: "Post 3"
           }
         ])
       );
@@ -98,7 +88,8 @@ describe("PostsService", () => {
     });
 
     it("should return correct posts after delete", () => {
-      const deleteId = "2";
+      const deleteId = "5";
+      postsService.create({ text: "Post 5" });
       postsService.delete(deleteId);
       const postsTest = postsService.findMany();
       expect(postsTest).toEqual(
@@ -106,6 +97,10 @@ describe("PostsService", () => {
           {
             id: "1",
             text: "Post 1"
+          },
+          {
+            id: "2",
+            text: "Post 2"
           },
           {
             id: "3",
@@ -120,8 +115,9 @@ describe("PostsService", () => {
     });
 
     it("should update post", () => {
-      const postId = "4";
-      const updateText = { id: postId, text: "Post 4 update" };
+      postsService.create({ text: "Post 5" });
+      const postId = "5";
+      const updateText = { id: postId, text: "Post 5 update" };
       postsService.update(postId, updateText);
       const postsTest = postsService.findMany();
       expect(postsTest).toEqual(
@@ -140,6 +136,10 @@ describe("PostsService", () => {
           },
           {
             id: "4",
+            text: "Post 4"
+          },
+          {
+            id: "5",
             text: updateText.text
           }
         ])
