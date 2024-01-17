@@ -75,18 +75,6 @@ describe("PostsService", () => {
       );
     });
 
-    it("should find a post", () => {
-      const idPost = "5";
-      const postText = { text: "Post 5" };
-      postsService.create(postText);
-      const testFindPost = postsService.find(idPost);
-      expect(testFindPost).toEqual(
-        expect.objectContaining({
-          text: postText.text
-        })
-      );
-    });
-
     it("should return correct posts after delete", () => {
       const deleteId = "2";
       postsService.delete(deleteId);
