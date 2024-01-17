@@ -24,15 +24,19 @@ describe("PostsService", () => {
       expect(postsTest).toEqual(
         expect.arrayContaining([
           {
+            id: "1",
             text: "Post 1"
           },
           {
+            id: "2",
             text: "Post 2"
           },
           {
+            id: "3",
             text: "Post 3"
           },
           {
+            id: "4",
             text: "Post 4"
           }
         ])
@@ -47,9 +51,11 @@ describe("PostsService", () => {
       expect(testSkipPosts).toEqual(
         expect.arrayContaining([
           {
+            id: "3",
             text: "Post 3"
           },
           {
+            id: "4",
             text: "Post 4"
           }
         ])
@@ -57,9 +63,11 @@ describe("PostsService", () => {
       expect(testLimitPosts).toEqual(
         expect.arrayContaining([
           {
+            id: "1",
             text: "Post 1"
           },
           {
+            id: "2",
             text: "Post 2"
           }
         ])
@@ -70,7 +78,21 @@ describe("PostsService", () => {
       const testPost = postsService.create({ text: "Post 5" });
       expect(testPost).toEqual(
         expect.objectContaining({
+          id: "5",
           text: "Post 5"
+        })
+      );
+    });
+
+    it("should find a post", () => {
+      const idPost = "5";
+      const postText = { text: "Post 5" };
+      postsService.create(postText);
+      const testFindPost = postsService.find(idPost);
+      expect(testFindPost).toEqual(
+        expect.objectContaining({
+          id: idPost,
+          text: postText.text
         })
       );
     });
@@ -82,12 +104,15 @@ describe("PostsService", () => {
       expect(postsTest).toEqual(
         expect.arrayContaining([
           {
+            id: "1",
             text: "Post 1"
           },
           {
+            id: "3",
             text: "Post 3"
           },
           {
+            id: "4",
             text: "Post 4"
           }
         ])
@@ -102,15 +127,19 @@ describe("PostsService", () => {
       expect(postsTest).toEqual(
         expect.arrayContaining([
           {
+            id: "1",
             text: "Post 1"
           },
           {
+            id: "2",
             text: "Post 2"
           },
           {
+            id: "3",
             text: "Post 3"
           },
           {
+            id: "4",
             text: updateText.text
           }
         ])
