@@ -43,7 +43,7 @@ describe("PostsService", () => {
       );
     });
 
-    it("should return correct posts for skip and limit options", () => {
+    it("should return correct posts for skip options", () => {
       const skipTest = 1;
       const limitTest = 2;
       const testPosts = postsService.findMany({
