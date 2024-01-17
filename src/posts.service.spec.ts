@@ -20,7 +20,7 @@ describe("PostsService", () => {
     });
 
     it("should return all posts if called without options", () => {
-      const postsTest = postsService.findMany({});
+      const postsTest = postsService.findMany();
       expect(postsTest).toEqual(
         expect.arrayContaining([
           {
@@ -93,6 +93,30 @@ describe("PostsService", () => {
           {
             id: "2",
             text: "Post 2"
+          }
+        ])
+      );
+    });
+
+    it("should return all posts if called without options", () => {
+      const postsTest = postsService.findMany({});
+      expect(postsTest).toEqual(
+        expect.arrayContaining([
+          {
+            id: "1",
+            text: "Post 1"
+          },
+          {
+            id: "2",
+            text: "Post 2"
+          },
+          {
+            id: "3",
+            text: "Post 3"
+          },
+          {
+            id: "4",
+            text: "Post 4"
           }
         ])
       );
