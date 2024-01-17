@@ -20,7 +20,7 @@ describe("PostsService", () => {
     });
 
     it("should return all posts if called without options", () => {
-      const postsTest = postsService.findMany();
+      const postsTest = postsService.findMany({});
       expect(postsTest).toEqual(
         expect.arrayContaining([
           {
@@ -38,6 +38,27 @@ describe("PostsService", () => {
           {
             id: "4",
             text: "Post 4"
+          }
+        ])
+      );
+    });
+
+    it("should return correct posts for skip and limit options", () => {
+      const skipTest = 1;
+      const limitTest = 2;
+      const testPosts = postsService.findMany({
+        skip: skipTest,
+        limit: limitTest
+      });
+      expect(testPosts).toEqual(
+        expect.arrayContaining([
+          {
+            id: "2",
+            text: "Post 2"
+          },
+          {
+            id: "3",
+            text: "Post 3"
           }
         ])
       );
@@ -72,27 +93,6 @@ describe("PostsService", () => {
           {
             id: "2",
             text: "Post 2"
-          }
-        ])
-      );
-    });
-
-    it("should return correct posts for skip and limit options", () => {
-      const skipTest = 1;
-      const limitTest = 2;
-      const testPosts = postsService.findMany({
-        skip: skipTest,
-        limit: limitTest
-      });
-      expect(testPosts).toEqual(
-        expect.arrayContaining([
-          {
-            id: "2",
-            text: "Post 2"
-          },
-          {
-            id: "3",
-            text: "Post 3"
           }
         ])
       );
