@@ -65,17 +65,17 @@ describe("PostsService", () => {
     });
 
     it("should return correct posts for limit options", () => {
-      const limitTest = 2;
-      const testPosts = postsService.findMany({ limit: limitTest });
+      const skipTest = 2;
+      const limitTest = 1;
+      const testPosts = postsService.findMany({
+        skip: skipTest,
+        limit: limitTest
+      });
       expect(testPosts).toEqual(
         expect.arrayContaining([
           {
-            id: "1",
-            text: "Post 1"
-          },
-          {
-            id: "2",
-            text: "Post 2"
+            id: "3",
+            text: "Post 3"
           }
         ])
       );
