@@ -19,6 +19,40 @@ describe("PostsService", () => {
       posts.forEach(post => postsService.create(post));
     });
 
+    it("should return correct posts for skip options", () => {
+      const skipTest = 2;
+      const testPosts = postsService.findMany({ skip: skipTest });
+      expect(testPosts).toEqual(
+        expect.arrayContaining([
+          {
+            id: "3",
+            text: "Post 3"
+          },
+          {
+            id: "4",
+            text: "Post 4"
+          }
+        ])
+      );
+    });
+
+    it("should return correct posts for limit options", () => {
+      const limitTest = 2;
+      const testPosts = postsService.findMany({ limit: limitTest });
+      expect(testPosts).toEqual(
+        expect.arrayContaining([
+          {
+            id: "1",
+            text: "Post 1"
+          },
+          {
+            id: "2",
+            text: "Post 2"
+          }
+        ])
+      );
+    });
+
     it("should add a new post", () => {
       const testPost = postsService.create({ text: "Post 5" });
       expect(testPost).toEqual(
@@ -61,40 +95,6 @@ describe("PostsService", () => {
           {
             id: "4",
             text: "Post 4"
-          }
-        ])
-      );
-    });
-
-    it("should return correct posts for skip options", () => {
-      const skipTest = 2;
-      const testPosts = postsService.findMany({ skip: skipTest });
-      expect(testPosts).toEqual(
-        expect.arrayContaining([
-          {
-            id: "3",
-            text: "Post 3"
-          },
-          {
-            id: "4",
-            text: "Post 4"
-          }
-        ])
-      );
-    });
-
-    it("should return correct posts for limit options", () => {
-      const limitTest = 2;
-      const testPosts = postsService.findMany({ limit: limitTest });
-      expect(testPosts).toEqual(
-        expect.arrayContaining([
-          {
-            id: "1",
-            text: "Post 1"
-          },
-          {
-            id: "2",
-            text: "Post 2"
           }
         ])
       );
